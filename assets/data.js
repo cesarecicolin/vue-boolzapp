@@ -166,12 +166,34 @@ const {createApp} = Vue
                         }
                     ],
                 }
-            ]
+            ],
+            activIndex: 0,
+            newMessage:""
         }
        
     }, 
     methods:{
+        dateOreMinuti(fullDate){
+            const luxonDate = dt.fromFormat(fullDate, "dd/MM/yyyy HH:mm:ss")
+            return luxonDate.toFormat("HH:mm") 
+        },
+        changeContact(clickedIndex){
+           this.activIndex = clickedIndex 
+        },
 
+        sendSms(){
+            
+                 this.contacts[activIndex].messages.push({
+                message: this.newMessage,
+                  status:"sent",
+                  date: "15:10"
+                  
+             })
+            
+            
+
+        }
+        
     }
     } )
     app.mount("#app")
