@@ -168,7 +168,8 @@ const {createApp} = Vue
                 }
             ],
             activIndex: 0,
-            newMessage:""
+            newMessage:"",
+             timeOut : setTimeout(1000)
         }
        
     }, 
@@ -181,18 +182,24 @@ const {createApp} = Vue
            this.activIndex = clickedIndex 
         },
 
-        sendSms(){
-            
-                 this.contacts[activIndex].messages.push({
-                message: this.newMessage,
-                  status:"sent",
-                  date: "15:10"
+         sendSms(){
+            if(this.newMessage !== ""){
+            this.contacts[this.activIndex].messages.push({
+                 message: this.newMessage,
+                   status:"sent",
+                   date: "15:10"
                   
-             })
+              })
+              this.newMessage = ""
+             
+              
+            }
+              
             
             
 
-        }
+         }
+       
         
     }
     } )
