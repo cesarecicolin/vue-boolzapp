@@ -168,8 +168,10 @@ const {createApp} = Vue
                 }
             ],
             activIndex: 0,
-            newMessage:"",
-             timeOut : setTimeout(1000)
+            newMessage:"", 
+            contactSrc: ""
+            
+            
         }
        
     }, 
@@ -187,21 +189,53 @@ const {createApp} = Vue
             this.contacts[this.activIndex].messages.push({
                  message: this.newMessage,
                    status:"sent",
-                   date: "15:10"
-                  
-              })
-              this.newMessage = ""
-             
+                   date: "15:10",
+                   
+                            
+              }),
+               this.newMessage = "" 
+               
               
             }
-              
+        
+         },
+         risp(){
             
-            
+            this.contacts[this.activIndex].messages.push({
+                message: "ok",
+                  status:"received",
+                  date: "15:10",
 
+                  
+                           
+             },
+             
+             
+             )
+           
+           console.log("ciao")
+         },
+         searchPerson(){
+            
+            let search = this.contactSrc.toLowerCase();
+            this.contacts.forEach(element => {
+                if (element.name.toLowerCase().includes(search)) {
+                    element.visible = true
+                }
+                else{
+                    element.visible = false
+                }
+            });
          }
+
+
+          
+        
+         
        
         
     }
     } )
     app.mount("#app")
+
     

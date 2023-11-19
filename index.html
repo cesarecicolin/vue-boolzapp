@@ -39,8 +39,13 @@
                 <label class="search-label" for="search">
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </label>
-                <input id="contacts-filter" class="left-searchbar-input" placeholder="Cerca o inizia una nuova chat"
-                    name="search">
+                <input id="contacts-filter"
+                 class="left-searchbar-input"
+                  placeholder="Cerca o inizia una nuova chat"
+                    name="search"
+                    v-model="contactSrc"
+                    @keyUp="searchPerson">
+                   
             </div>
         <!-- ************************************************************************************************************************************************************************
                           CONTATI 
@@ -48,6 +53,7 @@
             <div class="contacts">
                 <div class="contact" v-for="(persona, index) in contacts"
                 @click="changeContact(index)"
+                v-show="contacts[index].visible"
                 :class="activIndex === index ? 'active' : ''">
                     <div class="contact-logo">
                         <img :src="`assets/img/avatar${persona.avatar}.jpg`" :alt="`Avatar ${persona.name} `">
@@ -120,7 +126,7 @@
                     <i class="far fa-smile"></i>
                 </div>
                 <input class="new-message-inputs"  placeholder="Scrivi un messaggio" v-model="newMessage"
-                 @keyUp.enter="sendSms()" >
+                 @keyUp.enter="sendSms(),risp()"  >
                 <div class="right-footer-icon">
                     <i class="fa fa-microphone" aria-hidden="true"></i>
                 </div>
